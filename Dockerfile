@@ -9,7 +9,7 @@ RUN apt-get update -y && \
 
 # Install DBT
 RUN pip install -U pip
-RUN pip install dbt==0.17.2
+RUN pip install dbt==0.19.1
 RUN pip install dbt-postgres
 
 # Set environment variables

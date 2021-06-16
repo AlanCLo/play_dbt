@@ -15,7 +15,7 @@ Refs:
 Start it up
 ```
 # Build dbt container
-docker build -t alanlocal:dbt .
+docker build -t local/dbt .
 
 # Run
 export POSTGRES_PASSWORD=(pick a password)

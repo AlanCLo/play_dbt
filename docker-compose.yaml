@@ -15,7 +15,7 @@ services:
       - postgresdbt_data:/var/lib/postgresql/data
   dbt:
     container_name: dbt
-    image: alanlocal:dbt
+    image: local/dbt
     command: tail -F anything
     volumes:
       - ${PWD}/dbt_data:/dbt

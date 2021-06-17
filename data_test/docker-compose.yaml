@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  postgres:
+    container_name: postgresdbt
+    image: postgres
+    environment:
+        POSTGRES_PASSWORD: admin123
+        POSTGRES_USER: dbtuser
+        POSTGRES_DB: dbtdb
+        POSTGRES_SCHEMA: dbt
+    expose:
+      - 5432
+    restart: always
+    volumes:
+      - postgresdbt_data:/var/lib/postgresql/data
+  dbt:
+    container_name: dbt
+    image: local/dbt
+    command: tail -F anything
+    volumes:
+      - ${PWD}/dbt_data:/dbt
+      - ${PWD}/profile_data:/root/.dbt
+    depends_on:
+      - postgres
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+volumes:
+  postgresdbt_data:

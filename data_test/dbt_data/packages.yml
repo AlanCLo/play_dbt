@@ -1,0 +1,4 @@
+---
+packages:
+  - package: data-mie/dbt_profiler
+    version: 0.1.2

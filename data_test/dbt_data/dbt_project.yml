@@ -1,0 +1,39 @@
+---
+name: data_test_dbt
+version: '1.0.0'
+config-version: 2
+
+profile: data-test-profile
+
+source-paths: ["models"]
+analysis-paths: ["analysis"]
+test-paths: ["tests"]
+data-paths: ["data"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_modules"
+
+on-run-start:
+  - |
+    create table if not exists
+    {{ target.schema }}.test_history (
+      run_date timestamp,
+      table_name text,
+      test_name text,
+      test_result text,
+      test_details text
+    )
+
+on-run-end:
+  - "{{insert_into_test_history('dq_customers', 'test_history')}}"
+  - "{{insert_into_test_history('dq_orders', 'test_history')}}"
+
+models:
+  data_test_dbt:
+    materialized: table
+    staging:
+      materialized: view

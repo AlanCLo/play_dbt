@@ -1,0 +1,13 @@
+data-test-profile:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: postgresdbt
+      user: dbtuser
+      password: admin123
+      port: 5432
+      dbname: dbtdb
+      schema: dbt
+      threads: 1
+      keepalives_idle: 0 # default 0, indicating the system default

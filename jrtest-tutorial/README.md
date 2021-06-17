@@ -1,5 +1,5 @@
-# play_dbt
-Just a play area for dbt after following some tutorials
+# jrtest-tutorial
+My starting play area for dbt after following some tutorials
 
 Followed some tutes but using postgres instead of snowflake. Also added docker-compose to make it easy to start
 
@@ -14,8 +14,10 @@ Refs:
 
 Start it up
 ```
-# Build dbt container
+# Build dbt container in parent dir
 docker build -t local/dbt .
+
+cd jrtest-tutorial
 
 # Run
 export POSTGRES_PASSWORD=(pick a password)
